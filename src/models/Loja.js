@@ -1,4 +1,5 @@
-const mongoose = require('mongoose')
+'use strict';
+const mongoose = require('mongoose');
 
 const Loja = new mongoose.Schema({
   name: String,
@@ -7,8 +8,8 @@ const Loja = new mongoose.Schema({
   cnpj: String,
   workingHours: String,
   city: String,
-  state: String
+  state: String,
 
-})
+});
 
-module.exports = mongoose.model('Loja', Loja)
+module.exports = mongoose.model('Loja', Loja);
