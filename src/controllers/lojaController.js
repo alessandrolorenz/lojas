@@ -56,7 +56,6 @@ module.exports = {
       {
         new: true,
       });
-
     res.json(loja);
   },
 

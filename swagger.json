@@ -1,0 +1,307 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Store API for testing",
+    "description": "A simple API to learn how to write OpenAPI Specification"
+  },
+  "schemes": [
+    "http"
+  ],
+  "host": "localhost",
+  "basePath": "/",
+  "paths": {
+    "/lojas": {
+      "get": {
+        "summary": "Gets all stores",
+        "description": "Returns a list containing all stores.",
+        "responses": {
+          "200": {
+            "description": "A list of stores",
+            "schema": {
+              "$ref": "#/definitions/Stores"
+            }
+          },
+          "500": {
+            "$ref": "#/responses/Standard500ErrorResponse"
+          }
+        }
+      },
+      "post": {
+        "summary": "Creates a store",
+        "description": "Adds a new store to the stores list.",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "body",
+            "description": "The store to create.",
+            "schema": {
+              "$ref": "#/definitions/SimpleStore"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "store succesfully created.",
+            "schema": {
+              "$ref": "#/definitions/CompleteStore"
+            }
+          },
+          "400": {
+            "description": "store couldn't have been created."
+          },
+          "500": {
+            "$ref": "#/responses/Standard500ErrorResponse"
+          }
+        }
+      }
+    },
+    "/lojas/destroy/{id}/{name}": {
+      "parameters": [
+        {
+          "$ref": "#/parameters/id"
+        },
+        {
+          "$ref": "#/parameters/name"
+        }
+      ],
+      "delete": {
+        "summary": "Deletes a store",
+        "description": "Delete a single store identified via its id and name",
+        "responses": {
+          "204": {
+            "description": "Person successfully deleted.",
+            "schema": {
+              "$ref": "#/definitions/CompleteStore"
+            }
+          },
+          "404": {
+            "$ref": "#/responses/PersonDoesNotExistResponse"
+          },
+          "500": {
+            "$ref": "#/responses/Standard500ErrorResponse"
+          }
+        }
+      }
+    },
+    "/lojas/update": {
+      "parameters": [
+        {
+          "name": "name",
+          "in": "body",
+          "required": true,
+          "description": "The store's name",
+          "type": "string"
+        },
+        {
+          "name": "address",
+          "in": "body",
+          "required": true,
+          "description": "The store's name",
+          "type": "string"
+        },
+        {
+          "name": "phone",
+          "in": "body",
+          "required": true,
+          "description": "The store's name",
+          "type": "number"
+        },
+        {
+          "name": "cnpj",
+          "in": "body",
+          "required": true,
+          "description": "The store's name",
+          "type": "string"
+        },
+        {
+          "name": "workingHours",
+          "in": "body",
+          "required": true,
+          "description": "The store's name",
+          "type": "string"
+        },
+        {
+          "name": "city",
+          "in": "body",
+          "required": true,
+          "description": "The store's name",
+          "type": "string"
+        },
+        {
+          "name": "state",
+          "in": "body",
+          "required": true,
+          "description": "The store's name",
+          "type": "string"
+        }
+      ],
+      "put": {
+        "summary": "Update a store",
+        "description": "Update a single store identified",
+        "responses": {
+          "204": {
+            "description": "Person successfully deleted.",
+            "schema": {
+              "$ref": "#/definitions/CompleteStore"
+            }
+          },
+          "404": {
+            "$ref": "#/responses/PersonDoesNotExistResponse"
+          },
+          "500": {
+            "$ref": "#/responses/Standard500ErrorResponse"
+          }
+        }
+      }
+    },
+    "/lojas/search": {
+      "parameters": [
+        {
+          "$ref": "#/parameters/state"
+        },
+        {
+          "$ref": "#/parameters/city"
+        }
+      ],
+      "get": {
+        "summary": "Deletes a store",
+        "description": "Delete a single store identified via its id and name",
+        "responses": {
+          "204": {
+            "description": "Person successfully deleted.",
+            "schema": {
+              "$ref": "#/definitions/CompleteStore"
+            }
+          },
+          "404": {
+            "$ref": "#/responses/PersonDoesNotExistResponse"
+          },
+          "500": {
+            "$ref": "#/responses/Standard500ErrorResponse"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "SimpleStore": {
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "number"
+        },
+        "cnpj": {
+          "type": "string"
+        },
+        "workingHours": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        }
+      }
+    },
+    "CompleteStore": {
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "number"
+        },
+        "cnpj": {
+          "type": "string"
+        },
+        "workingHours": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        }
+      }
+    },
+    "Stores": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/CompleteStore"
+      }
+    },
+    "Error": {
+      "required": [
+        "code",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "responses": {
+    "Standard500ErrorResponse": {
+      "description": "An unexpected error occured.",
+      "schema": {
+        "$ref": "#/definitions/Error"
+      }
+    },
+    "PersonDoesNotExistResponse": {
+      "description": "Stores does not exist."
+    }
+  },
+  "parameters": {
+    "name": {
+      "name": "name",
+      "in": "path",
+      "required": true,
+      "description": "The store's name",
+      "type": "string"
+    },
+    "id": {
+      "name": "id",
+      "in": "path",
+      "required": true,
+      "description": "The store's name",
+      "type": "string"
+    },
+    "state": {
+      "name": "state",
+      "in": "query",
+      "description": "Store state",
+      "type": "string"
+    },
+    "city": {
+      "name": "city",
+      "in": "query",
+      "description": "Store city",
+      "type": "string"
+    }
+  }
+}

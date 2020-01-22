@@ -5,8 +5,8 @@ const searchController = require('./controllers/searchController');
 
 const routes = Router();
 
-routes.post('/lojas', lojaController.store);
 routes.get('/lojas', lojaController.index);
+routes.post('/lojas', lojaController.store);
 routes.delete('/lojas/destroy/:id/:name', lojaController.destroy);
 routes.put('/lojas/update', lojaController.update);
 
