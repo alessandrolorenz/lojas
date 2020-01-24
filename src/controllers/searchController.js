@@ -14,10 +14,14 @@ module.exports = {
       state = state.toUpperCase();
       const loja = await Loja.find({state});
       res.json(loja);
-    } else {
+    } else if (!state && city){
       const loja = await Loja.find({city});
       res.json(loja);
+    } else {
+      const loja = await Loja.find();
+      res.json(loja);
     }
+
   },
 
 };

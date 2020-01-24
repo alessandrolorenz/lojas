@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const routes = require('./routes');
 const swaggerUi = require('swagger-ui-express');
-const swaggerDoc = require('../swagger.json')
+const swaggerDoc = require('../swagger.json');
 
 const app = express();
 app.use('/lojas/api-lojas-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
