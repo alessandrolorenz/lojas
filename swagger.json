@@ -56,13 +56,10 @@
         }
       }
     },
-    "/lojas/destroy/{id}/{name}": {
+    "/lojas/destroy/{id}": {
       "parameters": [
         {
           "$ref": "#/parameters/id"
-        },
-        {
-          "$ref": "#/parameters/name"
         }
       ],
       "delete": {
@@ -280,14 +277,14 @@
     "name": {
       "name": "name",
       "in": "path",
-      "required": true,
+      "required": false,
       "description": "The store's name",
       "type": "string"
     },
     "id": {
       "name": "id",
       "in": "path",
-      "required": true,
+      "required": false,
       "description": "The store's name",
       "type": "string"
     },
